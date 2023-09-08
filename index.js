@@ -2,7 +2,12 @@ import express from 'express'
 import mongoose from "mongoose";
 import cors from "cors";
 import {login, register} from "./controller/usersMongo/usersMongo.js";
-
+import handleValidators, {
+    registerUserValidations,
+    loginUserValidations,
+    productValidations
+} from "./validations/validations.js";
+import {createProduct, getAllProducts} from "./controller/usersMongo/productsMongo.js";
 
 const api = express()
 
@@ -11,8 +16,11 @@ api.use(cors({
 }))
 api.use(express.json());
 
-api.post('/register', register)
-api.post('/login', login)
+api.post('/register', registerUserValidations, handleValidators , register)
+api.post('/login', loginUserValidations, handleValidators ,  login)
+
+api.post('/api/product',productValidations,handleValidators, createProduct)
+api.get('/products', getAllProducts)
 
 const mongoDBPassword = 'Asd12345'
 
