@@ -7,7 +7,7 @@ import handleValidators, {
     loginUserValidations,
     productValidations
 } from "./validations/validations.js";
-import {createProduct, getAllProducts} from "./controller/usersMongo/productsMongo.js";
+import {createProduct, getAllProducts} from "./controller/productsMongo/productsMongo.js";
 
 const api = express()
 
